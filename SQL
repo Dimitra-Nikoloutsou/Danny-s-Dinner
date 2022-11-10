@@ -119,4 +119,29 @@ group by 1
 order by purchases desc
 limit 1;
 
+with cte as (select
+s.customer_id,
+m.product_name,
+count(m.product_name) as purchases
+FROM dannys_diner.sales AS s
+JOIN dannys_diner.menu AS m
+ON s.product_id = m.product_id
+group by 1,2),
+cte1 as (
+select
+customer_id,
+product_name,
+purchases,
+dense_rank() over(partition by customer_id order by purchases desc) as dense_rank
+from cte
+group by 1,2,purchases)
+
+select
+customer_id,
+product_name,
+purchases
+from cte1
+where dense_rank=1
+;
+
 
