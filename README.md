@@ -1,4 +1,4 @@
-# 8WeekSQLChallenge
+# 8 Week SQL Challenge
 
 This is the first case study from <a href="https://8weeksqlchallenge.com/case-study-1/">8weeksqlchallenge</a> made by <a href="https://www.datawithdanny.com/">Data With Danny</a>
 
