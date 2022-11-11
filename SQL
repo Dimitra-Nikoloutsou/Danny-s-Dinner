@@ -179,5 +179,20 @@ order_date
 from cte
 where dense_rank=1
 
+-- 8. What is the total items and amount spent for each member before they became a member?
+
+SELECT
+s.customer_id,
+count(distinct(s.product_id)) as total_items,
+sum(me.price) as amount_spent
+FROM dannys_diner.sales as s
+join dannys_diner.members as m
+on s.customer_id=m.customer_id
+join dannys_diner.menu as me
+on s.product_id=me.product_id
+where order_date < join_date
+group by s.customer_id
+order by customer_id
+
 
 
